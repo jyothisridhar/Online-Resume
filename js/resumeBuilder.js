@@ -15,7 +15,7 @@ var bio = {
 	"biopic": "images/me.jpg"
 };
 
-bio.displayBio = function() {
+bio.display = function() {
 	var formattedName = HTMLheaderName.replace("%data%",bio.name);
 	$("#header").append(formattedName);
 	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
@@ -34,12 +34,10 @@ bio.displayBio = function() {
 	$("#topContacts").append(formattedGit);
 	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 	$("#topContacts").append(formattedLocation);
-};
 
-bio.displaySkills = function() {
 	if(bio.skills.length > 0) {
 		$("#header").append(HTMLskillsStart);
-		for(var index in bio.skills){
+		for(var index = 0; index < bio.skills.length; index++){
 			var formattedSkill= HTMLskills.replace("%data%", bio.skills[index]);
 			$("#skills").append(formattedSkill);
 		}
@@ -84,10 +82,8 @@ education.display = function () {
 			$(".education-entry:last").append(formattedMajor);
 		}
   	}
-};
 
-education.displayOnlineCourse = function() {
-	$(".education-entry:last").append(HTMLonlineClasses);
+  	$(".education-entry:last").append(HTMLonlineClasses);
   	if(education.onlineCourses.length > 0) {
 		for(var key in education.onlineCourses) {
 			var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[key].title);
@@ -184,11 +180,9 @@ function inName(name){
     return finalName;
 }
 
-bio.displayBio();
-bio.displaySkills();
+bio.display();
 projects.display();
 work.display();
 education.display();
-education.displayOnlineCourse();
 
 $("#mapDiv").append(googleMap);
